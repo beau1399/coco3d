@@ -1,4 +1,4 @@
-#Fast, Windowed 3D Graphics on the Tandy/Radio Shack Color Computer
+**Fast, Windowed 3D Graphics on the Tandy/Radio Shack Color Computer**
 
 See https://beaugg.blogspot.com/2015/02/fast-windowed-3d-graphics-on-tandyradio.html
 
