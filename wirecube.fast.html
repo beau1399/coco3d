@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+ <script type="application/javascript">
+function doit()
+{
+ var theta=0.125;draw(theta);
+}
+function draw(theta) 
+{
+var canvas = document.getElementById("canvas");
+if (canvas.getContext) 
+{
+ var ctx = canvas.getContext("2d");
+ ctx.fillStyle="red";
+ ctx.fillRect(0,0,64,32);
+ //Locate in model world
+ var camdist=2;
+ var hcamdist=1;
+ var mcost=0.5*Math.cos(theta);
+ var msint=0.5*Math.sin(theta);
+ //PROJECT and draw A
+ var axprime=(mcost+msint)*camdist/(camdist-msint+mcost); 
+ var ayprime=hcamdist/(camdist-msint+mcost);
+ var bxprime=(mcost-msint)*camdist/(camdist-msint-mcost);
+ var byprime=hcamdist/(camdist-msint-mcost);
+ var cxprime=(-mcost-msint)*camdist/(camdist+msint-mcost);
+ var cyprime=hcamdist/(camdist+msint-mcost);
+ var dxprime=(-mcost+msint)*camdist/(camdist+msint+mcost);
+ var dyprime=hcamdist/(camdist+msint+mcost); 
+ var exprime=axprime;
+ var eyprime=-ayprime; 
+ var fxprime=bxprime;
+ var fyprime=-byprime; 
+ var gxprime=cxprime;
+ var gyprime=-cyprime; 
+ var hxprime=dxprime;
+ var hyprime=-dyprime; 
+ ctx.lineJoin = "round";
+ ctx.strokeStyle = "black";
+ ctx.lineWidth = 2;
+ ctx.beginPath();
+ ctx.moveTo(axprime*32.0+32.0,ayprime*16.0+16.0);
+ ctx.lineTo(bxprime*32.0+32.0,byprime*16.0+16.0);
+ ctx.closePath();
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(cxprime*32.0+32.0,cyprime*16.0+16.0);
+ ctx.lineTo(bxprime*32.0+32.0,byprime*16.0+16.0);
+ ctx.closePath();
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(cxprime*32.0+32.0,cyprime*16.0+16.0);
+ ctx.lineTo(dxprime*32.0+32.0,dyprime*16.0+16.0);
+ ctx.closePath();
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(axprime*32.0+32.0,ayprime*16.0+16.0);
+ ctx.lineTo(dxprime*32.0+32.0,dyprime*16.0+16.0);
+ ctx.closePath();
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(exprime*32.0+32.0,eyprime*16.0+16.0);
+ ctx.lineTo(fxprime*32.0+32.0,fyprime*16.0+16.0);
+ ctx.closePath();
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(fxprime*32.0+32.0,fyprime*16.0+16.0);
+ ctx.lineTo(gxprime*32.0+32.0,gyprime*16.0+16.0);
+ ctx.closePath();
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(gxprime*32.0+32.0,gyprime*16.0+16.0);
+ ctx.lineTo(hxprime*32.0+32.0,hyprime*16.0+16.0);
+ ctx.closePath();
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(exprime*32.0+32.0,eyprime*16.0+16.0);
+ ctx.lineTo(hxprime*32.0+32.0,hyprime*16.0+16.0);
+ ctx.closePath();
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(exprime*32.0+32.0,eyprime*16.0+16.0);
+ ctx.lineTo(axprime*32.0+32.0,ayprime*16.0+16.0);
+ ctx.closePath();
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(fxprime*32.0+32.0,fyprime*16.0+16.0);
+ ctx.lineTo(bxprime*32.0+32.0,byprime*16.0+16.0);
+ ctx.closePath();
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(gxprime*32.0+32.0,gyprime*16.0+16.0);
+ ctx.lineTo(cxprime*32.0+32.0,cyprime*16.0+16.0);
+ ctx.closePath();
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(dxprime*32.0+32.0,dyprime*16.0+16.0);
+ ctx.lineTo(hxprime*32.0+32.0,hyprime*16.0+16.0);
+ ctx.closePath();
+ ctx.stroke();
+ setTimeout("draw("+(theta+0.1)+")",50 );
+ }
+} 
+ </script>
+ </head>
+ <body onload="doit();">
+ <canvas id="canvas" width="64" height="32"></canvas>
+ </body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+ <script type="application/javascript">
+function doit()
+{
+ var theta=0.125;draw(theta); 
+}
+function draw(theta) 
+{
+var canvas = document.getElementById("canvas");
+if (canvas.getContext) 
+{
+ var ctx = canvas.getContext("2d");
+ ctx.clearRect(0,0,399,799);
+ ctx.fillStyle="red";
+ ctx.fillRect(0,0,64,32);
+ ctx.width=400; 
+ ctx.height=1000;
+ var msint=0.5*Math.sin(theta);
+ var mcost=0.5*Math.cos(theta);
+ var extract =(mcost+msint)*64.0;
+ var nxtract =(mcost-msint)*64.0;
+ var acrit=2.0-msint+mcost;
+ var bcrit=2.0-msint-mcost;
+ var ccrit=2.0+msint-mcost;
+ var dcrit=2.0+msint+mcost;
+ var axprime=extract/acrit+32.0;
+ var ayprime=((16.0/acrit)+16.0);
+ var bxprime=nxtract/bcrit+32.0;
+ var byprime=((16.0/bcrit)+16.0);
+ var cxprime=-extract/ccrit+32.0;
+ var cyprime=((16.0/ccrit)+16.0);
+ var dxprime=-nxtract/dcrit+32.0;
+ var dyprime=((16.0/dcrit)+16.0);
+ var exprime=32.0;
+ var eyprime=8.0; 
+ ctx.beginPath(); 
+ ctx.moveTo(axprime,ayprime);
+ ctx.lineTo(bxprime,byprime);
+ ctx.closePath();
+ ctx.lineJoin = "round";
+ ctx.strokeStyle = "black";
+ ctx.lineWidth = 2;
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(cxprime,cyprime);
+ ctx.lineTo(bxprime,byprime);
+ ctx.closePath();
+ ctx.lineJoin = "round";
+ ctx.strokeStyle = "black";
+ ctx.lineWidth = 2;
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(cxprime,cyprime);
+ ctx.lineTo(dxprime,dyprime);
+ ctx.closePath();
+ ctx.lineJoin = "round";
+ ctx.strokeStyle = "black";
+ ctx.lineWidth = 2;
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(axprime,ayprime);
+ ctx.lineTo(dxprime,dyprime);
+ ctx.closePath();
+ ctx.lineJoin = "round";
+ ctx.strokeStyle = "black";
+ ctx.lineWidth = 2;
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(axprime,ayprime);
+ ctx.lineTo(exprime,eyprime);
+ ctx.closePath();
+ ctx.lineJoin = "round";
+ ctx.strokeStyle = "black";
+ ctx.lineWidth = 2;
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(bxprime,byprime);
+ ctx.lineTo(exprime,eyprime);
+ ctx.closePath();
+ ctx.lineJoin = "round";
+ ctx.strokeStyle = "black";
+ ctx.lineWidth = 2;
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(cxprime,cyprime);
+ ctx.lineTo(exprime,eyprime);
+ ctx.closePath();
+ ctx.lineJoin = "round";
+ ctx.strokeStyle = "black";
+ ctx.lineWidth = 2;
+ ctx.stroke();
+ ctx.beginPath();
+ ctx.moveTo(dxprime,dyprime);
+ ctx.lineTo(exprime,eyprime);
+ ctx.closePath();
+ ctx.lineJoin = "round";
+ ctx.strokeStyle = "black";
+ ctx.lineWidth = 2;
+ ctx.stroke();
+ setTimeout("draw("+(theta+0.1)+")",50 );
+ }
+} 
+ </script>
+ </head>
+ <body onload="doit();">
+ <canvas id="canvas" width="64" height="32"></canvas>
+ </body>
+</html>

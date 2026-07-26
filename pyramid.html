@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+ <script type="application/javascript">
+ function doit()
+ {
+  var theta=0.125;draw(theta);
+ }
+ function draw(theta) {
+ 
+  var canvas = document.getElementById("canvas");
+  if (canvas.getContext) {
+  
+  var ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,399,799);
+  
+  ctx.fillStyle="red";
+  ctx.fillRect(0,0,64,32); 
+  ctx.width=400; 
+  ctx.height=1000;
+  //Locate in model world
+  var camdist=2.0;
+  var worldxa=0.5; var worldya=0.5; var worldza=0.5; 
+  var worldxb=0.5; var worldyb=0.5; var worldzb=-0.5; 
+  var worldxc=-0.5; var worldyc=0.5; var worldzc=-0.5; 
+  var worldxd=-0.5; var worldyd=0.5; var worldzd=0.5; 
+  var worldxe=0.0; var worldye=-0.5; var worldze=0.0;
+  
+  //Rotate a,b,c,d and e about the Y axis   
+  var eworldxa=worldxa*Math.cos(theta)+worldza*Math.sin(theta);
+  var eworldza=-worldxa*Math.sin(theta)+worldza*Math.cos(theta);
+  
+  var eworldxb=worldxb*Math.cos(theta)+worldzb*Math.sin(theta);
+  var eworldzb=-worldxb*Math.sin(theta)+worldzb*Math.cos(theta);
+  
+  var eworldxc=worldxc*Math.cos(theta)+worldzc*Math.sin(theta);
+  var eworldzc=-worldxc*Math.sin(theta)+worldzc*Math.cos(theta);
+  
+  var eworldxd=worldxd*Math.cos(theta)+worldzd*Math.sin(theta);
+  var eworldzd=-worldxd*Math.sin(theta)+worldzd*Math.cos(theta);
+  
+  //NO need to rotate "E"
+  var eworldxe=worldxe;
+  var eworldze=worldze;
+
+  //Rotation about Y axis doesn't change Y coordinate  
+  var eworldya=worldya;
+  var eworldyb=worldyb;
+  var eworldyc=worldyc;
+  var eworldyd=worldyd;
+  var eworldye=worldye;
+  
+  //PROJECT and draw 
+  var axprime=eworldxa*camdist/(camdist+eworldza);
+  var ayprime=eworldya*camdist/(camdist+eworldza); 
+  var bxprime=eworldxb*camdist/(camdist+eworldzb);
+  var byprime=eworldyb*camdist/(camdist+eworldzb); 
+  var cxprime=eworldxc*camdist/(camdist+eworldzc);
+  var cyprime=eworldyc*camdist/(camdist+eworldzc); 
+  var dxprime=eworldxd*camdist/(camdist+eworldzd);
+  var dyprime=eworldyd*camdist/(camdist+eworldzd); 
+  var exprime=eworldxe*camdist/(camdist+eworldze);
+  var eyprime=eworldye*camdist/(camdist+eworldze); 
+  
+  ctx.beginPath(); 
+  ctx.moveTo(axprime*32.0+32.0,ayprime*16.0+16.0);
+  ctx.lineTo(bxprime*32.0+32.0,byprime*16.0+16.0);
+  ctx.closePath();
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  
+  ctx.beginPath();
+  ctx.moveTo(cxprime*32.0+32.0,cyprime*16.0+16.0);
+  ctx.lineTo(bxprime*32.0+32.0,byprime*16.0+16.0);
+  ctx.closePath();
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  
+  ctx.beginPath();
+  ctx.moveTo(cxprime*32.0+32.0,cyprime*16.0+16.0);
+  ctx.lineTo(dxprime*32.0+32.0,dyprime*16.0+16.0);
+  ctx.closePath();
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  
+  ctx.beginPath();
+  ctx.moveTo(axprime*32.0+32.0,ayprime*16.0+16.0);
+  ctx.lineTo(dxprime*32.0+32.0,dyprime*16.0+16.0);
+  ctx.closePath();
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(axprime*32.0+32.0,ayprime*16.0+16.0);
+  ctx.lineTo(exprime*32.0+32.0,eyprime*16.0+16.0);
+  ctx.closePath();
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(bxprime*32.0+32.0,byprime*16.0+16.0);
+  ctx.lineTo(exprime*32.0+32.0,eyprime*16.0+16.0);
+  ctx.closePath();
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(cxprime*32.0+32.0,cyprime*16.0+16.0);
+  ctx.lineTo(exprime*32.0+32.0,eyprime*16.0+16.0);
+  ctx.closePath();
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(dxprime*32.0+32.0,dyprime*16.0+16.0);
+  ctx.lineTo(exprime*32.0+32.0,eyprime*16.0+16.0);
+  ctx.closePath();
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+ 
+  setTimeout("draw("+(theta+0.1)+")",50 );
+  
+  
+ }
+ 
+} 
+</script>
+</head>
+ 
+<body onload="doit();">
+<canvas id="canvas" width="64" height="32"></canvas>
+</body>
+</html>

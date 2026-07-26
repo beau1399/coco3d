@@ -1,0 +1,248 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <script type="application/javascript">
+    function doit()
+    {
+      var theta=0.125;draw(theta);
+      //theta=1.25;draw(theta);
+      
+    }
+    function draw(theta) {
+    
+      var canvas = document.getElementById("canvas");
+      if (canvas.getContext) {
+       // 
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0,0,399,799);
+                
+        ctx.fillStyle="red";
+        ctx.fillRect(0,0,64,32);
+
+
+ 		ctx.width=400;
+ 		
+ 		ctx.height=1000;
+
+		//Locate in model world
+		var camdist=2.0;
+		var worldxa=0.5; var worldya=0.5; var worldza=0.5; 
+		var worldxb=0.5; var worldyb=0.5; var worldzb=-0.5; 
+		var worldxc=-0.5; var worldyc=0.5; var worldzc=-0.5; 
+		var worldxd=-0.5; var worldyd=0.5; var worldzd=0.5; 
+		var worldxe=0.5; var worldye=-0.5; var worldze=0.5; 
+		var worldxf=0.5; var worldyf=-0.5; var worldzf=-0.5; 
+		var worldxg=-0.5; var worldyg=-0.5; var worldzg=-0.5; 
+		var worldxh=-0.5; var worldyh=-0.5; var worldzh=0.5; 
+		
+
+        var eworldxa=worldxa*Math.cos(theta)+worldza*Math.sin(theta);
+        var eworldza=-worldxa*Math.sin(theta)+worldza*Math.cos(theta);
+        
+        var eworldxb=worldxb*Math.cos(theta)+worldzb*Math.sin(theta);
+        var eworldzb=-worldxb*Math.sin(theta)+worldzb*Math.cos(theta);
+        
+        var eworldxc=worldxc*Math.cos(theta)+worldzc*Math.sin(theta);
+        var eworldzc=-worldxc*Math.sin(theta)+worldzc*Math.cos(theta);
+        
+        var eworldxd=worldxd*Math.cos(theta)+worldzd*Math.sin(theta);
+        var eworldzd=-worldxd*Math.sin(theta)+worldzd*Math.cos(theta);
+        
+        var eworldxe=worldxe*Math.cos(theta)+worldze*Math.sin(theta);
+        var eworldze=-worldxe*Math.sin(theta)+worldze*Math.cos(theta);
+        
+        var eworldxf=worldxf*Math.cos(theta)+worldzf*Math.sin(theta);      
+        var eworldzf=-worldxf*Math.sin(theta)+worldzf*Math.cos(theta);
+        
+        var eworldxg=worldxg*Math.cos(theta)+worldzg*Math.sin(theta);
+        var eworldzg=-worldxg*Math.sin(theta)+worldzg*Math.cos(theta);
+        
+        var eworldxh=worldxh*Math.cos(theta)+worldzh*Math.sin(theta);
+        var eworldzh=-worldxh*Math.sin(theta)+worldzh*Math.cos(theta);
+
+		
+		var eworldya=worldya;
+		var eworldyb=worldyb;
+		var eworldyc=worldyc;
+		var eworldyd=worldyd;
+		var eworldye=worldye;
+		var eworldyf=worldyf;
+		var eworldyg=worldyg;
+		var eworldyh=worldyh;
+		
+		//PROJECT and draw A
+//		var axprime=eworldxa*camdist/(camdist-worldxa*Math.sin(theta)+worldza*Math.cos(theta));
+		var axprime=eworldxa*camdist/(camdist+eworldza);
+	
+	
+		var ayprime=eworldya*camdist/(camdist+eworldza); 
+
+		var bxprime=eworldxb*camdist/(camdist+eworldzb);
+		var byprime=eworldyb*camdist/(camdist+eworldzb); 
+
+		var cxprime=eworldxc*camdist/(camdist+eworldzc);
+		var cyprime=eworldyc*camdist/(camdist+eworldzc); 
+
+		var dxprime=eworldxd*camdist/(camdist+eworldzd);
+		var dyprime=eworldyd*camdist/(camdist+eworldzd); 
+
+		var exprime=eworldxe*camdist/(camdist+eworldze);
+		var eyprime=eworldye*camdist/(camdist+eworldze); 
+
+		var fxprime=eworldxf*camdist/(camdist+eworldzf);
+		var fyprime=eworldyf*camdist/(camdist+eworldzf); 
+
+		var gxprime=eworldxg*camdist/(camdist+eworldzg);
+		var gyprime=eworldyg*camdist/(camdist+eworldzg); 
+
+		var hxprime=eworldxh*camdist/(camdist+eworldzh);
+		var hyprime=eworldyh*camdist/(camdist+eworldzh); 
+
+
+
+
+
+
+		
+            ctx.beginPath();
+            ctx.moveTo(axprime*32.0+32.0,ayprime*16.0+16.0);
+            ctx.lineTo(bxprime*32.0+32.0,byprime*16.0+16.0);
+            ctx.closePath();
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+		
+            ctx.beginPath();
+            ctx.moveTo(cxprime*32.0+32.0,cyprime*16.0+16.0);
+            ctx.lineTo(bxprime*32.0+32.0,byprime*16.0+16.0);
+            ctx.closePath();
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+		
+            ctx.beginPath();
+            ctx.moveTo(cxprime*32.0+32.0,cyprime*16.0+16.0);
+            ctx.lineTo(dxprime*32.0+32.0,dyprime*16.0+16.0);
+            ctx.closePath();
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+		
+            ctx.beginPath();
+            ctx.moveTo(axprime*32.0+32.0,ayprime*16.0+16.0);
+            ctx.lineTo(dxprime*32.0+32.0,dyprime*16.0+16.0);
+            ctx.closePath();
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+
+
+
+
+
+
+
+
+
+
+
+
+            ctx.beginPath();
+            ctx.moveTo(exprime*32.0+32.0,eyprime*16.0+16.0);
+            ctx.lineTo(fxprime*32.0+32.0,fyprime*16.0+16.0);
+            ctx.closePath();
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+		
+            ctx.beginPath();
+            ctx.moveTo(fxprime*32.0+32.0,fyprime*16.0+16.0);
+            ctx.lineTo(gxprime*32.0+32.0,gyprime*16.0+16.0);
+            ctx.closePath();
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+		
+            ctx.beginPath();
+            ctx.moveTo(gxprime*32.0+32.0,gyprime*16.0+16.0);
+            ctx.lineTo(hxprime*32.0+32.0,hyprime*16.0+16.0);
+            ctx.closePath();
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+		
+            ctx.beginPath();
+            ctx.moveTo(exprime*32.0+32.0,eyprime*16.0+16.0);
+            ctx.lineTo(hxprime*32.0+32.0,hyprime*16.0+16.0);
+            ctx.closePath();
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+		
+		
+		
+		
+            ctx.beginPath();
+            ctx.moveTo(exprime*32.0+32.0,eyprime*16.0+16.0);
+            ctx.lineTo(axprime*32.0+32.0,ayprime*16.0+16.0);
+            ctx.closePath();
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+		
+        
+            ctx.beginPath();
+            ctx.moveTo(fxprime*32.0+32.0,fyprime*16.0+16.0);
+            ctx.lineTo(bxprime*32.0+32.0,byprime*16.0+16.0);
+            ctx.closePath();
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+		
+            ctx.beginPath();
+            ctx.moveTo(gxprime*32.0+32.0,gyprime*16.0+16.0);
+            ctx.lineTo(cxprime*32.0+32.0,cyprime*16.0+16.0);
+            ctx.closePath();
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+		
+            ctx.beginPath();
+            ctx.moveTo(dxprime*32.0+32.0,dyprime*16.0+16.0);
+            ctx.lineTo(hxprime*32.0+32.0,hyprime*16.0+16.0);
+            ctx.closePath();
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+
+//		if(theta>3.14) theta=0.0;
+
+		
+		
+		setTimeout("draw("+(theta+0.1)+")",50 );
+           
+        
+      }
+      
+    }    
+  </script>
+ </head>
+ 
+ <body onload="doit();">
+   <canvas id="canvas" width="64" height="32"></canvas>
+ </body>
+</html>
